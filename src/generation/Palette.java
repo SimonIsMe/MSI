@@ -153,6 +153,10 @@ public class Palette
     
     public boolean canBeHere(Box newBox)
     {
+        if (newBox.getY() + newBox.getHeight() > Settings.PALETTE_HEIGHT ||
+            newBox.getX() + newBox.getWidth() > Settings.PALETTE_WIDTH)
+            return false;
+        
         for (Box box : this.getBoxes()) {
             if (box == newBox) 
                 continue;

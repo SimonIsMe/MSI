@@ -103,4 +103,9 @@ public class Box
         
         return false;
     }
+    
+    public String toString()
+    {
+        return this._x + "x" + this._y + " " + this.getWidth() + " " + this.getHeight();
+    }
 }
