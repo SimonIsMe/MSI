@@ -81,4 +81,115 @@ public class BoxTest
         assertTrue(boxA.isCrossing(boxB));
     }
     
+    @Test
+    public void testIsCrossing_8()
+    {
+        Box boxA = new Box(0, 0, 100, 50);
+        Box boxB = new Box(10, 10, 10, 10);
+        assertTrue(boxA.isCrossing(boxB));
+    }
+    
+    @Test
+    public void testIsCrossing_9()
+    {
+        Box boxA = new Box(10, 0, 100, 50);
+        Box boxB = new Box(0, 5, 20, 20);
+        assertTrue(boxA.isCrossing(boxB));
+    }
+    
+    @Test
+    public void testIsCrossing_10()
+    {
+        Box boxA = new Box(0, 0, 100, 50);
+        Box boxB = new Box(90, 10, 20, 20);
+        assertTrue(boxA.isCrossing(boxB));
+    }
+    
+    @Test
+    public void testIsCrossing_11()
+    {
+        Box boxA = new Box(10, 0, 100, 50);
+        Box boxB = new Box(5, 0, 100, 50);
+        assertTrue(boxA.isCrossing(boxB));
+    }
+    
+    @Test
+    public void testIsCrossing_12()
+    {
+        Box boxA = new Box(5, 0, 100, 50);
+        Box boxB = new Box(10, 0, 100, 50);
+        assertTrue(boxA.isCrossing(boxB));
+    }
+    
+    @Test
+    public void testIsCrossing_13()
+    {
+        Box boxA = new Box(0, 5, 100, 50);
+        Box boxB = new Box(0, 0, 100, 50);
+        assertTrue(boxA.isCrossing(boxB));
+    }
+    
+    @Test
+    public void testIsCrossing_14()
+    {
+        Box boxA = new Box(0, 0, 100, 50);
+        Box boxB = new Box(0, 5, 100, 50);
+        assertTrue(boxA.isCrossing(boxB));
+    }
+    
+    @Test
+    public void testIsCrossing_15()
+    {
+        Box boxA = new Box(10, 10, 100, 50);
+        Box boxB = new Box(5, 15, 20, 20);
+        assertTrue(boxA.isCrossing(boxB));
+    }
+    
+    @Test
+    public void testIsCrossing_16()
+    {
+        Box boxA = new Box(50, 0, 30, 20);
+        Box boxB = new Box(51, 0, 20, 30);
+        assertTrue(boxA.isCrossing(boxB));
+    }
+    
+    @Test
+    public void testIsCrossing_17()
+    {
+        Box boxA = new Box(51, 0, 20, 30);
+        Box boxB = new Box(50, 0, 30, 20);
+        assertTrue(boxA.isCrossing(boxB));
+    }
+    
+    @Test
+    public void testIsCrossing_18()
+    {
+        Box boxA = new Box(0, 51, 20, 30);
+        Box boxB = new Box(0, 50, 30, 20);
+        assertTrue(boxA.isCrossing(boxB));
+    }
+    
+    @Test
+    public void testIsCrossing_19()
+    {
+        Box boxA = new Box(0, 50, 30, 20);
+        Box boxB = new Box(0, 51, 20, 30);
+        assertTrue(boxA.isCrossing(boxB));
+    }
+    
+    @Test
+    public void testIsCrossing_20()
+    {
+        Box boxA = new Box(0, 0, 50, 30);
+        Box boxB = new Box(20, 10, 30, 50);
+        assertTrue(boxA.isCrossing(boxB));
+    }
+    
+    @Test
+    public void testIsCrossing_21()
+    {
+        Box boxA = new Box(20, 10, 30, 50);
+        Box boxB = new Box(0, 0, 50, 30);
+        assertTrue(boxA.isCrossing(boxB));
+    }
 }

@@ -19,8 +19,8 @@ public class MIS_2
     {   
         
 //        Random random = new Random();
-//        for (int i = 0; i < 90; i++)
-//            System.out.println((random.nextInt(40) + 1) + " " + (random.nextInt(40) + 1));
+//        for (int i = 0; i < 30; i++)
+//            System.out.println((random.nextInt(40) + 50) + " " + (random.nextInt(40) + 50));
 //        
 //        return;
         

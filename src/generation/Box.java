@@ -84,24 +84,77 @@ public class Box
         return  Math.max(this._width, this._height) < Math.min(Settings.PALETTE_WIDTH, Settings.PALETTE_HEIGHT);
     }
     
-    public boolean isCrossing(Box box)
+    public boolean isCrossing(Box box) 
     {
-        boolean[][] tab = new boolean[Settings.PALETTE_WIDTH][Settings.PALETTE_WIDTH];
+        int a1X = this.getX();
+        int a1Y = this.getY();
+        int a2X = this.getX() + this.getWidth();
+        int a2Y = this.getY();
+        int a3X = this.getX() + this.getWidth();
+        int a3Y = this.getY() + this.getHeight();
+        int a4X = this.getX();
+        int a4Y = this.getY() + this.getHeight();
         
-        for (int k = 0; k < Settings.PALETTE_WIDTH; k++) 
-            for (int w = 0; w < Settings.PALETTE_WIDTH; w++) 
-                tab[k][w] = false;
+        int b1X = box.getX();
+        int b1Y = box.getY();
+        int b2X = box.getX() + box.getWidth();
+        int b2Y = box.getY();
+        int b3X = box.getX() + box.getWidth();
+        int b3Y = box.getY() + box.getHeight();
+        int b4X = box.getX();
+        int b4Y = box.getY() + box.getHeight();
         
-        for (int k = this.getX(); k < this.getX() + this.getWidth(); k++) 
-            for (int w = this.getY(); w < this.getY() + this.getHeight(); w++) 
-                tab[k][w] = true;
+//        System.out.println("("+a1X+","+a1Y+") ("+a2X+","+a2Y+")");
+//        System.out.println("("+a4X+","+a4Y+") ("+a3X+","+a3Y+")");
+//        
+//        System.out.println("------------");
+//        
+//        System.out.println("("+b1X+","+b1Y+") ("+b2X+","+b2Y+")");
+//        System.out.println("("+b4X+","+b4Y+") ("+b3X+","+b3Y+")");
         
-        for (int k = box.getX(); k < box.getX() + box.getWidth(); k++)
-            for (int w = box.getY(); w < box.getY() + box.getHeight(); w++)
-                if (tab[k][w]) 
-                    return true;
+        //  czy są wspólne obszary?
+        if ((b1X < a1X && a1X < b2X && a1Y < b1Y && b1Y < a4Y) || (a1X < b1X && b1X < a2X && b1Y < a1Y && a1Y < b4Y))
+            return true;
+        if ((b1X < a2X && a2X < b2X && a2Y < b1Y && b1Y < a3Y) || (a1X < b2X && b2X < a2X && b2Y < a1Y && a1Y < b3Y))
+            return true;
+        
+        //  czy są wspólne narożniki?
+        if ((a1X == b1X && a1Y == b1Y) || (a2X == b2X && a2Y == b2Y) || (a3X == b3X && a3Y == b3Y) || (a4X == b4X && a4Y == b4Y))
+            return true;
+        
+        //  czy boki się nakładają?
+        if ((a1Y == b1Y && a4Y == b4Y && b1X < a2X && a2X < b2X) || (b1Y == a1Y && b4Y == a4Y && a1X < b2X && b2X < a2X))
+            return true;
+        if ((a1X == b1X && a2X == b2X && a1Y < b4Y && b4Y < a4Y) || (b1X == a1X && b2X == a2X && b1Y < a4Y && a4Y < b4Y))
+            return true;
+        
+        //  czy 1 bok się nakłada?
+        if (((a1X < b1X && b1X < a2X) || (a1X < b2X && b2X < a2X)) && a1Y == b1Y && b1Y < a4Y && a4Y < b4Y)
+            return true;
+        if (((b1X < a1X && a1X < b2X) || (b1X < a2X && a2X < b2X)) && b1Y == a1Y && a1Y < b4Y && b4Y < a4Y)
+            return true;
+        if (((a1X < b1X && b1X < a2X) || (a1X < b2X && b2X < a2X)) && a4Y == b4Y && b1Y < a4Y && a4Y < b4Y)
+            return true;
+        if (((b1X < a1X && a1X < b2X) || (b1X < a2X && a2X < b2X)) && b4Y == a4Y && a1Y < b4Y && b4Y < a4Y)
+            return true;
+        
+        //  czy jakiś narożnik jest wewnątrz prostokąta
+        if ((this._pointIsInsideRectangle(a1X, a1Y, a3X, a3Y, b1X, b1Y)) || (this._pointIsInsideRectangle(b1X, b1Y, b3X, b3Y, a1X, a1Y)))
+            return true;
+        if ((this._pointIsInsideRectangle(a1X, a1Y, a3X, a3Y, b2X, b2Y)) || (this._pointIsInsideRectangle(b1X, b1Y, b3X, b3Y, a2X, a2Y)))
+            return true;
+        if ((this._pointIsInsideRectangle(a1X, a1Y, a3X, a3Y, b3X, b3Y)) || (this._pointIsInsideRectangle(b1X, b1Y, b3X, b3Y, a3X, a3Y)))
+            return true;
+        if ((this._pointIsInsideRectangle(a1X, a1Y, a3X, a3Y, b4X, b4Y)) || (this._pointIsInsideRectangle(b1X, b1Y, b3X, b3Y, a4X, a4Y)))
+            return true;
         
         return false;
+    }
+    
+    private boolean _pointIsInsideRectangle(int x1, int y1, int x2, int y2, int x, int y)
+    {
+        
+        return x1 < x && x < x2 && y1 < y && y < y2;
     }
     
     public String toString()

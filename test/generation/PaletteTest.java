@@ -10,6 +10,10 @@ import static org.junit.Assert.*;
 public class PaletteTest
 {
     @Test
+    public void test() {
+    }
+    
+    @Test
     public void testAddBoxAndPush_1()
     {
         Box box = new Box(10, 10, 10, 10);
@@ -33,6 +37,4 @@ public class PaletteTest
         assertEquals(0, box.getX());
         assertEquals(10, box.getY());
     }
-
-    
 }

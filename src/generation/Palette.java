@@ -71,15 +71,6 @@ public class Palette
         return false;
     }
     
-    public boolean addBox(Box newBox)
-    {
-        if (this.canBeHere(newBox) == false)
-            return false;
-        
-        this._boxes.add(newBox);
-        return true;
-    }
-    
     public boolean addBoxAndPush(Box newBox)
     {
         if (this.addBox(newBox) == false)
@@ -88,6 +79,15 @@ public class Palette
         this._pushBoxToTop(newBox);
         this._pushBoxToLeft(newBox);
         
+        return true;
+    }
+    
+    public boolean addBox(Box newBox)
+    {
+        if (this.canBeHere(newBox) == false)
+            return false;
+        
+        this._boxes.add(newBox);
         return true;
     }
     
